@@ -1,0 +1,51 @@
+# Pepsi Man 3D - Car Materials
+# Vibrant colors inspired by Pepsi branding
+
+# Car Body - Bright Red
+newmtl VAZ2101_Body
+Ka 1.0 0.2 0.2
+Kd 1.0 0.2 0.2
+Ks 0.8 0.8 0.8
+Ns 64.0
+
+# Interior - Black
+newmtl VAZ2101_Interior
+Ka 0.2 0.2 0.2
+Kd 0.2 0.2 0.2
+Ks 0.3 0.3 0.3
+Ns 32.0
+
+# Windows/Glass - Light Blue (transparent effect)
+newmtl VAZ2101_Glass
+Ka 0.6 0.8 1.0
+Kd 0.6 0.8 1.0
+Ks 1.0 1.0 1.0
+Ns 128.0
+
+# Wheels - Dark Gray
+newmtl Wheel_195_50R13x10_
+Ka 0.3 0.3 0.3
+Kd 0.3 0.3 0.3
+Ks 0.5 0.5 0.5
+Ns 32.0
+
+# Wheels copy 1
+newmtl Wheel_195_50R13x10_001
+Ka 0.3 0.3 0.3
+Kd 0.3 0.3 0.3
+Ks 0.5 0.5 0.5
+Ns 32.0
+
+# Wheels copy 2
+newmtl Wheel_195_50R13x10_002
+Ka 0.3 0.3 0.3
+Kd 0.3 0.3 0.3
+Ks 0.5 0.5 0.5
+Ns 32.0
+
+# Wheels copy 3
+newmtl Wheel_195_50R13x10_003
+Ka 0.3 0.3 0.3
+Kd 0.3 0.3 0.3
+Ks 0.5 0.5 0.5
+Ns 32.0

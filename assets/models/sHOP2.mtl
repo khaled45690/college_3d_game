@@ -1,0 +1,25 @@
+# sHOP2 - custom street building palette
+
+newmtl Material.001
+Ka 0.38 0.18 0.10
+Kd 0.82 0.38 0.22
+Ks 0.18 0.10 0.08
+Ns 14.0
+
+newmtl Material.002
+Ka 0.42 0.38 0.28
+Kd 0.90 0.84 0.68
+Ks 0.12 0.12 0.10
+Ns 10.0
+
+newmtl None
+Ka 0.25 0.25 0.26
+Kd 0.50 0.50 0.52
+Ks 0.14 0.14 0.14
+Ns 15.0
+
+newmtl bulb
+Ka 0.80 0.65 0.05
+Kd 1.00 0.88 0.35
+Ks 0.60 0.55 0.20
+Ns 80.0

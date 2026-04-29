@@ -1,0 +1,18 @@
+Starting Pepsi Man 3D - Phase 2: Load and Render Model
+Window created: 1
+Warning: Material file [ cube.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+material [ 'Material' ] not found in .mtl
+
+Loaded OBJ file: assets/models/cube.obj
+Shapes: 1, Materials: 0
+Mesh '' loaded with 36 vertices
+Model loaded successfully!
+Model loaded successfully!
+
+Controls:
+  W/S - Zoom in/out
+  R   - Reset camera
+  ESC - Exit
+
+Starting main loop...

@@ -1,0 +1,133 @@
+# Golf Car Materials - GTI Red
+
+newmtl carrozzeria
+Ka 0.45 0.04 0.04
+Kd 0.85 0.06 0.06
+Ks 0.80 0.60 0.60
+Ns 90.0
+
+newmtl met_red
+Ka 0.42 0.04 0.04
+Kd 0.80 0.06 0.06
+Ks 0.75 0.55 0.55
+Ns 80.0
+
+newmtl pla_red
+Ka 0.38 0.03 0.03
+Kd 0.72 0.05 0.05
+Ks 0.40 0.20 0.20
+Ns 30.0
+
+newmtl met_black
+Ka 0.06 0.06 0.06
+Kd 0.10 0.10 0.10
+Ks 0.65 0.65 0.65
+Ns 90.0
+
+newmtl met_black_matte
+Ka 0.05 0.05 0.05
+Kd 0.08 0.08 0.08
+Ks 0.12 0.12 0.12
+Ns 6.0
+
+newmtl pla_black
+Ka 0.05 0.05 0.05
+Kd 0.09 0.09 0.09
+Ks 0.20 0.20 0.20
+Ns 15.0
+
+newmtl pla_white
+Ka 0.82 0.82 0.82
+Kd 0.94 0.94 0.94
+Ks 0.50 0.50 0.50
+Ns 40.0
+
+newmtl alluminio
+Ka 0.60 0.60 0.62
+Kd 0.75 0.75 0.77
+Ks 0.90 0.90 0.90
+Ns 110.0
+
+newmtl steel
+Ka 0.48 0.48 0.50
+Kd 0.62 0.62 0.65
+Ks 0.85 0.85 0.85
+Ns 100.0
+
+newmtl iron
+Ka 0.28 0.28 0.29
+Kd 0.38 0.38 0.40
+Ks 0.45 0.45 0.45
+Ns 45.0
+
+newmtl mirror
+Ka 0.72 0.72 0.74
+Kd 0.82 0.82 0.84
+Ks 0.98 0.98 0.98
+Ns 128.0
+
+newmtl copper
+Ka 0.55 0.27 0.07
+Kd 0.72 0.36 0.09
+Ks 0.80 0.58 0.28
+Ns 70.0
+
+newmtl clear_glass
+Ka 0.45 0.58 0.70
+Kd 0.50 0.64 0.78
+Ks 0.92 0.94 0.96
+Ns 120.0
+
+newmtl fari_Glass
+Ka 0.88 0.88 0.82
+Kd 0.96 0.96 0.90
+Ks 0.98 0.98 0.94
+Ns 110.0
+
+newmtl fari_Glass_Back
+Ka 0.72 0.08 0.08
+Kd 0.88 0.10 0.10
+Ks 0.85 0.50 0.50
+Ns 85.0
+
+newmtl Fari_indicatori
+Ka 0.78 0.42 0.02
+Kd 0.92 0.55 0.03
+Ks 0.72 0.60 0.28
+Ns 65.0
+
+newmtl dashboard
+Ka 0.09 0.08 0.08
+Kd 0.14 0.13 0.12
+Ks 0.18 0.18 0.18
+Ns 12.0
+
+newmtl cloth
+Ka 0.16 0.14 0.12
+Kd 0.22 0.19 0.16
+Ks 0.04 0.04 0.04
+Ns 4.0
+
+newmtl rubber
+Ka 0.05 0.05 0.05
+Kd 0.07 0.07 0.07
+Ks 0.08 0.08 0.08
+Ns 4.0
+
+newmtl pneumatici_battistrada
+Ka 0.04 0.04 0.04
+Kd 0.06 0.06 0.06
+Ks 0.06 0.06 0.06
+Ns 3.0
+
+newmtl lock
+Ka 0.38 0.38 0.40
+Kd 0.52 0.52 0.55
+Ks 0.72 0.72 0.72
+Ns 85.0
+
+newmtl vinile
+Ka 0.10 0.09 0.08
+Kd 0.16 0.14 0.12
+Ks 0.12 0.12 0.12
+Ns 8.0

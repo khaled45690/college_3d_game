@@ -1,0 +1,7 @@
+# Road Blockade - Vivid orange safety barrier
+
+newmtl RoadBlockade_02_Material
+Ka 0.65 0.22 0.00
+Kd 0.95 0.35 0.00
+Ks 0.50 0.35 0.10
+Ns 35.0

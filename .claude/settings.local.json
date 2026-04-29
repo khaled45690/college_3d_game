@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(ln -sf /home/khaled/Documents/khaled/test_ing/objects/shop/sHOP2.obj /home/khaled/Documents/khaled/test_ing/assets/models/sHOP2.obj)",
+      "Bash(ln -sf /home/khaled/Documents/khaled/test_ing/objects/shop/sHOP2.mtl /home/khaled/Documents/khaled/test_ing/assets/models/sHOP2.mtl)",
+      "Bash(g++ -std=c++17 -I./include -I/usr/include/opencv4 src/main.cpp src/Model.cpp src/Scene.cpp src/Road.cpp src/Menu.cpp -lGL -lGLU -lglut -lm -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -o pepsi_man)",
+      "Bash(python3)",
+      "Bash(ln -sf '/home/khaled/Documents/khaled/test_ing/objects/obj_file/obj file/obj file.obj' /home/khaled/Documents/khaled/test_ing/assets/models/character.obj)",
+      "Bash(pkg-config --modversion assimp)",
+      "Read(//usr/lib/**)",
+      "Read(//usr/include/assimp/**)",
+      "Bash(assimp info *)",
+      "Bash(g++ -std=c++17 -I./include src/main.cpp src/Model.cpp src/Scene.cpp src/Road.cpp src/AssimpModel.cpp src/Menu.cpp -lGL -lGLU -lglut -lm -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lassimp -o pepsi_man)",
+      "Bash(pkg-config --cflags opencv4)",
+      "Bash(pkg-config --cflags opencv)",
+      "Bash(g++ -std=c++17 -I./include -I/usr/include/opencv4 src/main.cpp src/Model.cpp src/Scene.cpp src/Road.cpp src/AssimpModel.cpp src/Menu.cpp -lGL -lGLU -lglut -lm -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lassimp -o pepsi_man)"
+    ]
+  }
+}

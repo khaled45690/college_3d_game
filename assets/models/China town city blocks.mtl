@@ -1,0 +1,362 @@
+# China Town City Blocks - Vivid city palette
+
+newmtl initialShadingGroup
+Ka 0.38 0.38 0.38
+Kd 0.55 0.55 0.55
+Ks 0.10 0.10 0.10
+Ns 10.0
+
+# ── Building walls: warm cream / off-white ────────────────────────────
+newmtl aiStandardSurface12SG
+Ka 0.48 0.43 0.36
+Kd 0.88 0.82 0.68
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl aiStandardSurface13SG
+Ka 0.46 0.40 0.32
+Kd 0.84 0.76 0.62
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl aiStandardSurface14SG
+Ka 0.44 0.38 0.30
+Kd 0.80 0.70 0.56
+Ks 0.07 0.07 0.07
+Ns 7.0
+
+newmtl aiStandardSurface15SG
+Ka 0.46 0.44 0.38
+Kd 0.86 0.82 0.70
+Ks 0.09 0.09 0.09
+Ns 9.0
+
+# ── Building walls: brick red / terra cotta ────────────────────────────
+newmtl aiStandardSurface16SG
+Ka 0.42 0.18 0.12
+Kd 0.72 0.28 0.18
+Ks 0.10 0.06 0.06
+Ns 10.0
+
+newmtl aiStandardSurface17SG
+Ka 0.45 0.20 0.14
+Kd 0.76 0.32 0.22
+Ks 0.10 0.07 0.07
+Ns 10.0
+
+newmtl aiStandardSurface18SG
+Ka 0.40 0.22 0.14
+Kd 0.68 0.36 0.22
+Ks 0.09 0.07 0.07
+Ns 9.0
+
+# ── Building walls: concrete grey ─────────────────────────────────────
+newmtl aiStandardSurface19SG
+Ka 0.28 0.28 0.30
+Kd 0.55 0.55 0.58
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl aiStandardSurface20SG
+Ka 0.30 0.30 0.32
+Kd 0.58 0.58 0.62
+Ks 0.09 0.09 0.09
+Ns 9.0
+
+# ── Windows / glass (blue-tinted) ─────────────────────────────────────
+newmtl aiStandardSurface21SG
+Ka 0.15 0.22 0.35
+Kd 0.22 0.36 0.58
+Ks 0.80 0.85 0.90
+Ns 110.0
+
+newmtl aiStandardSurface22SG
+Ka 0.14 0.20 0.32
+Kd 0.20 0.34 0.54
+Ks 0.78 0.84 0.88
+Ns 105.0
+
+newmtl aiStandardSurface23SG
+Ka 0.12 0.18 0.30
+Kd 0.18 0.30 0.50
+Ks 0.76 0.82 0.86
+Ns 100.0
+
+# ── Roads / asphalt (very dark) ────────────────────────────────────────
+newmtl aiStandardSurface24SG
+Ka 0.06 0.06 0.07
+Kd 0.12 0.12 0.13
+Ks 0.06 0.06 0.06
+Ns 4.0
+
+newmtl aiStandardSurface25SG
+Ka 0.07 0.07 0.08
+Kd 0.13 0.13 0.14
+Ks 0.06 0.06 0.06
+Ns 4.0
+
+newmtl aiStandardSurface26SG
+Ka 0.08 0.08 0.08
+Kd 0.14 0.14 0.15
+Ks 0.06 0.06 0.06
+Ns 4.0
+
+# ── Pavement / sidewalk ────────────────────────────────────────────────
+newmtl aiStandardSurface27SG
+Ka 0.35 0.33 0.30
+Kd 0.65 0.62 0.57
+Ks 0.10 0.10 0.10
+Ns 10.0
+
+newmtl aiStandardSurface28SG
+Ka 0.33 0.31 0.28
+Kd 0.62 0.59 0.54
+Ks 0.09 0.09 0.09
+Ns 9.0
+
+newmtl aiStandardSurface29SG
+Ka 0.36 0.34 0.31
+Kd 0.66 0.64 0.59
+Ks 0.10 0.10 0.10
+Ns 10.0
+
+newmtl aiStandardSurface30SG
+Ka 0.32 0.30 0.27
+Kd 0.60 0.57 0.52
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+# ── Metal / structural (silver) ────────────────────────────────────────
+newmtl aiStandardSurface32SG
+Ka 0.38 0.38 0.40
+Kd 0.55 0.55 0.58
+Ks 0.72 0.72 0.75
+Ns 75.0
+
+newmtl aiStandardSurface33SG
+Ka 0.40 0.40 0.42
+Kd 0.58 0.58 0.62
+Ks 0.74 0.74 0.78
+Ns 80.0
+
+newmtl aiStandardSurface34SG
+Ka 0.35 0.35 0.37
+Kd 0.50 0.50 0.54
+Ks 0.68 0.68 0.72
+Ns 70.0
+
+newmtl aiStandardSurface35SG
+Ka 0.42 0.42 0.44
+Kd 0.60 0.60 0.64
+Ks 0.76 0.76 0.80
+Ns 82.0
+
+# ── Chinatown accent: VIVID RED ────────────────────────────────────────
+newmtl aiStandardSurface36SG
+Ka 0.55 0.02 0.02
+Kd 0.92 0.04 0.04
+Ks 0.60 0.25 0.25
+Ns 50.0
+
+newmtl aiStandardSurface38SG
+Ka 0.52 0.02 0.02
+Kd 0.88 0.04 0.04
+Ks 0.55 0.22 0.22
+Ns 48.0
+
+# ── Chinatown accent: VIVID GOLD ───────────────────────────────────────
+newmtl aiStandardSurface37SG
+Ka 0.55 0.40 0.02
+Kd 0.95 0.72 0.04
+Ks 0.70 0.62 0.20
+Ns 60.0
+
+newmtl aiStandardSurface39SG
+Ka 0.52 0.38 0.02
+Kd 0.90 0.68 0.04
+Ks 0.68 0.60 0.18
+Ns 58.0
+
+# ── Cars inside the city scene ─────────────────────────────────────────
+newmtl carcolor:aiStandardSurface1SG
+Ka 0.04 0.06 0.42
+Kd 0.06 0.10 0.72
+Ks 0.65 0.65 0.75
+Ns 75.0
+
+newmtl carcolor:aiStandardSurface2SG
+Ka 0.42 0.04 0.04
+Kd 0.72 0.06 0.06
+Ks 0.65 0.45 0.45
+Ns 75.0
+
+newmtl carcolor:aiStandardSurface3SG
+Ka 0.05 0.05 0.05
+Kd 0.08 0.08 0.08
+Ks 0.55 0.55 0.55
+Ns 75.0
+
+newmtl carcolor:aiStandardSurface4SG
+Ka 0.52 0.52 0.54
+Kd 0.78 0.78 0.82
+Ks 0.75 0.75 0.78
+Ns 85.0
+
+newmtl carcolor:pasted__aiStandardSurface18SG
+Ka 0.05 0.05 0.05
+Kd 0.08 0.08 0.08
+Ks 0.28 0.28 0.28
+Ns 18.0
+
+newmtl carcolor:pasted__aiStandardSurface19SG
+Ka 0.18 0.26 0.38
+Kd 0.30 0.45 0.65
+Ks 0.82 0.86 0.92
+Ns 105.0
+
+# ── Street furniture / elle group ─────────────────────────────────────
+newmtl elle3:aiStandardSurface6SG
+Ka 0.10 0.24 0.08
+Kd 0.16 0.42 0.12
+Ks 0.04 0.08 0.04
+Ns 4.0
+
+newmtl elle:aiStandardSurface4SG
+Ka 0.12 0.26 0.10
+Kd 0.18 0.44 0.14
+Ks 0.04 0.08 0.04
+Ns 4.0
+
+newmtl elle:aiStandardSurface5SG
+Ka 0.28 0.26 0.22
+Kd 0.50 0.48 0.42
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl elle:aiStandardSurface6SG
+Ka 0.30 0.28 0.24
+Kd 0.52 0.50 0.44
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl elle:aiStandardSurface7SG
+Ka 0.32 0.30 0.26
+Kd 0.54 0.52 0.46
+Ks 0.09 0.09 0.09
+Ns 9.0
+
+newmtl elle:aiStandardSurface9SG
+Ka 0.16 0.16 0.18
+Kd 0.26 0.26 0.28
+Ks 0.28 0.28 0.30
+Ns 32.0
+
+newmtl elle:aiStandardSurface10SG
+Ka 0.18 0.16 0.14
+Kd 0.28 0.26 0.22
+Ks 0.14 0.14 0.13
+Ns 14.0
+
+newmtl elle:aiStandardSurface11SG
+Ka 0.40 0.38 0.34
+Kd 0.70 0.66 0.60
+Ks 0.12 0.12 0.11
+Ns 12.0
+
+newmtl elle:aiStandardSurface12SG
+Ka 0.42 0.40 0.36
+Kd 0.74 0.70 0.64
+Ks 0.12 0.12 0.11
+Ns 12.0
+
+newmtl elle:aiStandardSurface13SG
+Ka 0.08 0.08 0.08
+Kd 0.12 0.12 0.12
+Ks 0.22 0.22 0.22
+Ns 20.0
+
+newmtl elle:aiStandardSurface14SG
+Ka 0.10 0.10 0.10
+Kd 0.15 0.15 0.15
+Ks 0.22 0.22 0.22
+Ns 20.0
+
+# Red signs / lanterns in street furniture
+newmtl elle:aiStandardSurface16SG
+Ka 0.52 0.02 0.02
+Kd 0.88 0.04 0.04
+Ks 0.45 0.22 0.22
+Ns 38.0
+
+# ── Pasted / instanced geometry ────────────────────────────────────────
+newmtl pasted__aiStandardSurface20SG2
+Ka 0.44 0.40 0.34
+Kd 0.82 0.75 0.63
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl pasted__aiStandardSurface20SG3
+Ka 0.46 0.42 0.36
+Kd 0.84 0.77 0.65
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl pasted__aiStandardSurface27SG
+Ka 0.35 0.33 0.30
+Kd 0.65 0.62 0.57
+Ks 0.10 0.10 0.10
+Ns 10.0
+
+newmtl pasted__aiStandardSurface28SG
+Ka 0.33 0.31 0.28
+Kd 0.62 0.59 0.54
+Ks 0.09 0.09 0.09
+Ns 9.0
+
+newmtl pasted__aiStandardSurface28SG1
+Ka 0.31 0.29 0.26
+Kd 0.59 0.56 0.51
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl pasted__aiStandardSurface28SG2
+Ka 0.29 0.27 0.24
+Kd 0.56 0.53 0.48
+Ks 0.08 0.08 0.08
+Ns 8.0
+
+newmtl pasted__aiStandardSurface32SG
+Ka 0.38 0.38 0.40
+Kd 0.55 0.55 0.58
+Ks 0.72 0.72 0.75
+Ns 75.0
+
+newmtl pasted__aiStandardSurface33SG
+Ka 0.40 0.40 0.42
+Kd 0.58 0.58 0.62
+Ks 0.74 0.74 0.78
+Ns 80.0
+
+newmtl pasted__aiStandardSurface36SG
+Ka 0.55 0.02 0.02
+Kd 0.92 0.04 0.04
+Ks 0.60 0.25 0.25
+Ns 50.0
+
+newmtl pasted__aiStandardSurface36SG1
+Ka 0.52 0.38 0.02
+Kd 0.90 0.68 0.04
+Ks 0.68 0.60 0.18
+Ns 58.0
+
+newmtl pasted__pasted__aiStandardSurface27SG
+Ka 0.35 0.33 0.30
+Kd 0.65 0.62 0.57
+Ks 0.10 0.10 0.10
+Ns 10.0
+
+newmtl pasted__pasted__aiStandardSurface36SG
+Ka 0.55 0.02 0.02
+Kd 0.92 0.04 0.04
+Ks 0.60 0.25 0.25
+Ns 50.0
