@@ -10,7 +10,7 @@ int windowWidth = 800;
 int windowHeight = 600;
 
 // Camera (distances in metres)
-float cameraDistance = 15.0f;
+float cameraDistance = 20.0f;
 float cameraRotX = 20.0f;
 float cameraRotY = 0.0f;
 Model* g_model = nullptr;
@@ -19,6 +19,8 @@ float modelRotation = 0.0f;
 // Menu
 Menu* g_menu = nullptr;
 bool gameStarted = false;
+bool g_gameActive = false;  // true once initEasyMode() has been called for this session
+MenuState g_lastMenuState = MENU_MAIN;
 
 // Game Scene
 Scene* g_scene = nullptr;
@@ -32,29 +34,47 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Check if menu should be shown
-    if (g_menu->getState() != GAME_RUNNING) {
+    MenuState curMenuState = g_menu->getState();
+    if (curMenuState != GAME_RUNNING) {
+        // Only drop the active flag when actually leaving the game, not every menu frame
+        if (g_lastMenuState == GAME_RUNNING)
+            g_gameActive = false;
+        g_lastMenuState = curMenuState;
         g_menu->render();
     } else {
-        // Game is running - render 3D scene with car model
+        g_lastMenuState = GAME_RUNNING;
+        // Initialize game on the first frame of GAME_RUNNING
+        if (!g_gameActive) {
+            if (g_menu->getDifficulty() == DIFFICULTY_HARD)
+                g_scene->initHardMode();
+            else
+                g_scene->initEasyMode();
+            g_gameActive   = true;
+            cameraDistance = 20.0f;
+            cameraRotX     = 25.0f;
+            cameraRotY     = 0.0f;
+        }
 
         // Set up projection matrix
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        // near=0.5m, far=800m — covers procedural road length
-        gluPerspective(50.0f, (float)windowWidth / (float)windowHeight, 0.5f, 800.0f);
+        // near=0.5m, far=2400m — covers 3× scaled road length
+        gluPerspective(50.0f, (float)windowWidth / (float)windowHeight, 0.5f, 2400.0f);
 
         // Set up model view matrix with camera
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
-        // Orbit around a point at road level (roadY) so camera always stays above the road
+        // Camera follows character position (X and Z)
         const float roadY = 0.0f;
+        float trackX = g_scene ? g_scene->getCharX() : 0.0f;
+        float trackZ = g_scene ? g_scene->getCharZ() : 0.0f;
         float camX = cameraDistance * sinf(cameraRotY * 3.14159f / 180.0f) * cosf(cameraRotX * 3.14159f / 180.0f);
         float camY = cameraDistance * sinf(cameraRotX * 3.14159f / 180.0f) + roadY;
         float camZ = cameraDistance * cosf(cameraRotY * 3.14159f / 180.0f) * cosf(cameraRotX * 3.14159f / 180.0f);
 
-        gluLookAt(camX, camY, camZ,
-                  0.0f, roadY + 4.0f, 0.0f,  // look at car-roof height above road
+        gluLookAt(camX + trackX, camY, camZ + trackZ,
+                  trackX, roadY + 6.0f, trackZ - 15.0f,
                   0.0f, 1.0f, 0.0f);
 
         // Render the scene (environment, obstacles, cars, etc.)
@@ -127,6 +147,46 @@ void renderHUD() {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, c);
     }
 
+    // Win / lose overlay
+    if (g_scene) {
+        GameResult result = g_scene->getResult();
+        if (result != GAME_PLAYING) {
+            float bx = windowWidth  / 2.0f - 160.0f;
+            float by = windowHeight / 2.0f - 70.0f;
+
+            // Semi-transparent background panel
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glColor4f(0.0f, 0.0f, 0.0f, 0.70f);
+            glBegin(GL_QUADS);
+            glVertex2f(bx,          by);
+            glVertex2f(bx + 320.0f, by);
+            glVertex2f(bx + 320.0f, by + 140.0f);
+            glVertex2f(bx,          by + 140.0f);
+            glEnd();
+            glDisable(GL_BLEND);
+
+            // Result text (large)
+            if (result == GAME_WON) {
+                glColor3f(0.2f, 1.0f, 0.3f);
+                glRasterPos2f(bx + 90.0f, by + 48.0f);
+                for (char c : std::string("YOU WIN!"))
+                    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
+            } else {
+                glColor3f(1.0f, 0.25f, 0.25f);
+                glRasterPos2f(bx + 80.0f, by + 48.0f);
+                for (char c : std::string("GAME OVER"))
+                    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
+            }
+
+            // Prompt
+            glColor3f(1.0f, 1.0f, 1.0f);
+            glRasterPos2f(bx + 25.0f, by + 95.0f);
+            for (char c : std::string("Press R to play again   |   ESC to quit"))
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, c);
+        }
+    }
+
     // Re-enable depth testing
     glEnable(GL_DEPTH_TEST);
 
@@ -139,6 +199,16 @@ void renderHUD() {
 
 // Idle callback (for animation)
 void idle() {
+    static int lastTime = 0;
+    int currentTime = glutGet(GLUT_ELAPSED_TIME);
+    if (lastTime == 0) lastTime = currentTime;
+    float dt = (currentTime - lastTime) / 1000.0f;
+    if (dt > 0.05f) dt = 0.05f;  // cap at 50 ms so big pauses don't explode physics
+    lastTime = currentTime;
+
+    if (g_scene && g_menu && g_menu->getState() == GAME_RUNNING)
+        g_scene->update(dt);
+
     glutPostRedisplay();
 }
 
@@ -156,21 +226,39 @@ void keyboard(unsigned char key, int x, int y) {
         case 27: // ESC key
             exit(0);
             break;
-        case 'r': // Reset camera
+        case 'r': // Restart game if over, otherwise reset camera
         case 'R':
-            cameraRotX = 20.0f;
-            cameraRotY = 0.0f;
-            cameraDistance = 15.0f;
+            if (g_scene && g_scene->getResult() != GAME_PLAYING) {
+                if (g_menu->getDifficulty() == DIFFICULTY_HARD)
+                    g_scene->initHardMode();
+                else
+                    g_scene->initEasyMode();
+            } else {
+                cameraRotX = 25.0f;
+                cameraRotY = 0.0f;
+                cameraDistance = 20.0f;
+            }
+            break;
+        case ' ':   // Jump
+            if (g_scene) g_scene->jump();
+            break;
+        case 'a':
+        case 'A':   // Move left
+            if (g_scene) g_scene->moveLeft();
+            break;
+        case 'd':
+        case 'D':   // Move right
+            if (g_scene) g_scene->moveRight();
             break;
         case 'w':  // Zoom in
         case 'W':
             cameraDistance -= 10.0f;
-            if (cameraDistance < 20.0f) cameraDistance = 20.0f;
+            if (cameraDistance < 10.0f) cameraDistance = 10.0f;
             break;
         case 's':  // Zoom out
         case 'S':
             cameraDistance += 10.0f;
-            if (cameraDistance > 2000.0f) cameraDistance = 2000.0f;
+            if (cameraDistance > 6000.0f) cameraDistance = 6000.0f;
             break;
         case '8':  // Move forward (zoom in)
             cameraDistance -= 10.0f;
@@ -178,7 +266,7 @@ void keyboard(unsigned char key, int x, int y) {
             break;
         case '5':  // Move backward (zoom out)
             cameraDistance += 10.0f;
-            if (cameraDistance > 2000.0f) cameraDistance = 2000.0f;
+            if (cameraDistance > 6000.0f) cameraDistance = 6000.0f;
             break;
         case '4':  // Rotate camera left
             cameraRotY -= 4.0f;
@@ -200,12 +288,20 @@ void keyboard(unsigned char key, int x, int y) {
 
 // Special keyboard callback (arrow keys, function keys, etc.)
 void special(int key, int x, int y) {
-    // If menu is active, handle menu input
     if (g_menu->getState() != GAME_RUNNING) {
         g_menu->handleSpecialKeypress(key);
         glutPostRedisplay();
         return;
     }
+    switch (key) {
+        case GLUT_KEY_LEFT:
+            if (g_scene) g_scene->moveLeft();
+            break;
+        case GLUT_KEY_RIGHT:
+            if (g_scene) g_scene->moveRight();
+            break;
+    }
+    glutPostRedisplay();
 }
 
 // Mouse motion callback
@@ -283,49 +379,8 @@ int main(int argc, char** argv) {
     // model to a unit cube first, so scale = desired real-world size in metres).
     std::cout << "Loading game scene..." << std::endl;
 
-    // Road is drawn procedurally by Scene::road — no model needed.
-    // Road surface sits at y=0; small Y lift keeps cars above the surface.
-    const float roadY = 0.2f;
-    const float sidewalkY = 0.18f;  // sidewalk top (CURB_H)
-
-    // ── Player car (center lane, near camera) ─────────────────────────────
-    g_scene->addModel("player_car", "assets/models/old_car.obj",
-                      glm::vec3(0, roadY, 8.0f),
-                      glm::vec3(4.0f, 4.0f, 4.0f),
-                      glm::vec3(0, 0, 0));
-
-    // ── Roadblocks (just ahead, blocking left and right lanes) ────────────
-    g_scene->addModel("roadblock_1", "assets/models/RoadBlockade_02.obj",
-                      glm::vec3(-3.0f, roadY, 2.0f),
-                      glm::vec3(2.0f, 2.0f, 2.0f),
-                      glm::vec3(0, 0, 0));
-
-    g_scene->addModel("roadblock_2", "assets/models/RoadBlockade_02.obj",
-                      glm::vec3(3.0f, roadY, 2.0f),
-                      glm::vec3(2.0f, 2.0f, 2.0f),
-                      glm::vec3(0, 0, 0));
-
-    // ── Parked Golf cars on sidewalk (right kerb, parallel parking) ───────
-    g_scene->addModel("parked_r1", "assets/models/Golf.obj",
-                      glm::vec3(5.8f, sidewalkY, 4.0f),
-                      glm::vec3(4.0f, 4.0f, 4.0f),
-                      glm::vec3(0, 0, 0));
-
-    g_scene->addModel("parked_r2", "assets/models/Golf.obj",
-                      glm::vec3(5.8f, sidewalkY, -7.0f),
-                      glm::vec3(4.0f, 4.0f, 4.0f),
-                      glm::vec3(0, 0, 0));
-
-    // ── Parked Golf cars (left kerb) ──────────────────────────────────────
-    g_scene->addModel("parked_l1", "assets/models/Golf.obj",
-                      glm::vec3(-5.8f, sidewalkY, 0.0f),
-                      glm::vec3(4.0f, 4.0f, 4.0f),
-                      glm::vec3(0, 180, 0));
-
-    g_scene->addModel("parked_l2", "assets/models/Golf.obj",
-                      glm::vec3(-5.8f, sidewalkY, -10.0f),
-                      glm::vec3(4.0f, 4.0f, 4.0f),
-                      glm::vec3(0, 180, 0));
+    // Obstacles and the player character are managed by Scene::initEasyMode().
+    // Static scene objects (buildings, character) are loaded below.
 
     // ── Buildings (FBX) ──────────────────────────────────────────────────
     // Native size: 12m wide × 8.5m tall × 9.3m deep.
@@ -333,29 +388,38 @@ int main(int argc, char** argv) {
     // scale=15 → 15m along road, ~10.6m tall, ~11.6m deep.
     // Sidewalk outer edge X=8.5 + half-depth 5.8 → centre X=14.3 ≈ 14.
     // 5 buildings per side, 20m spacing: Z centres -20, -40, -60, -80, -100.
-    const glm::vec3 bldgScale(15.0f, 15.0f, 15.0f);
-    float bldgZ[] = { -20.0f, -40.0f, -60.0f, -80.0f, -100.0f };
+    const glm::vec3 bldgScale(45.0f, 45.0f, 45.0f);
+    float bldgZ[] = { -60.0f, -120.0f, -180.0f, -240.0f, -300.0f };
 
     for (int i = 0; i < 5; ++i) {
         g_scene->addAssimpModel("bldg_r" + std::to_string(i),
                                 "objects/Free_Building/fbxBuilding.fbx",
-                                glm::vec3(14.0f, 0.0f, bldgZ[i]),
+                                glm::vec3(42.0f, 0.0f, bldgZ[i]),
                                 bldgScale,
                                 glm::vec3(0, 90, 0));
 
         g_scene->addAssimpModel("bldg_l" + std::to_string(i),
                                 "objects/Free_Building/fbxBuilding.fbx",
-                                glm::vec3(-14.0f, 0.0f, bldgZ[i]),
+                                glm::vec3(-42.0f, 0.0f, bldgZ[i]),
                                 bldgScale,
                                 glm::vec3(0, 270, 0));
     }
 
     // ── Character (Assimp FBX) ────────────────────────────────────────────
     g_scene->addAssimpModel("character",
-                            "objects/fbx_Clean/fbx Clean.fbx",
-                            glm::vec3(0.0f, roadY, 5.0f),
-                            glm::vec3(2.0f, 2.0f, 2.0f),
-                            glm::vec3(-90, 0, 0));
+                            "Action Adventure Pack/main.fbx",
+                            glm::vec3(0.0f, 0.0f, 5.0f),
+                            glm::vec3(4.5f, 4.5f, 4.5f),
+                            glm::vec3(0, 180, 0));
+
+    // Load Mixamo animation clips onto the character.
+    // Place your downloaded FBX files in objects/fbx_Clean/.
+    // The character FBX itself may already contain a "run" clip — if Assimp
+    // finds one it is stored automatically; loadAnimation() adds extra clips.
+    g_scene->loadAssimpAnimation("character",
+                                  "Character_Pack/running.fbx", "run");
+    g_scene->loadAssimpAnimation("character",
+                                  "Character_Pack/jump.fbx",    "jump");
 
     std::cout << "Game scene loaded successfully!" << std::endl;
 

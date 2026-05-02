@@ -17,6 +17,9 @@ Model::Model()
 }
 
 Model::~Model() {
+    for (auto& mesh : meshes)
+        if (mesh.material.diffuseTexture)
+            glDeleteTextures(1, &mesh.material.diffuseTexture);
     meshes.clear();
 }
 

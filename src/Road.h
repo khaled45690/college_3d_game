@@ -4,16 +4,16 @@
 class Road {
 public:
     // Road geometry constants (metres)
-    static constexpr float ROAD_HALF_W = 4.5f;   // half-width of asphalt (-4.5 to +4.5)
-    static constexpr float CURB_H      = 0.18f;  // kerb height
-    static constexpr float SIDEWALK_W  = 4.0f;   // sidewalk width (each side)
-    static constexpr float Z_NEAR      = 30.0f;  // road end behind player
-    static constexpr float Z_FAR       = -400.0f;// road end ahead
+    static constexpr float ROAD_HALF_W = 13.5f;  // half-width of asphalt (-13.5 to +13.5)
+    static constexpr float CURB_H      = 0.54f;  // kerb height
+    static constexpr float SIDEWALK_W  = 12.0f;  // sidewalk width (each side)
+    static constexpr float Z_NEAR      = 90.0f;  // road end behind player
+    static constexpr float Z_FAR       = -1200.0f;// road end ahead
 
     // Building wall constants — match main.cpp shop placement
-    static constexpr float BLDG_X       = 11.7f;  // centre X of building block
-    static constexpr float BLDG_DEPTH   = 6.4f;   // total road-perpendicular depth
-    static constexpr float BLDG_H       = 4.0f;   // building height (lowered)
+    static constexpr float BLDG_X       = 35.1f;  // centre X of building block
+    static constexpr float BLDG_DEPTH   = 19.2f;  // total road-perpendicular depth
+    static constexpr float BLDG_H       = 12.0f;  // building height
 
     void render();
 

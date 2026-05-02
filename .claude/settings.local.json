@@ -14,7 +14,18 @@
       "Bash(g++ -std=c++17 -I./include src/main.cpp src/Model.cpp src/Scene.cpp src/Road.cpp src/AssimpModel.cpp src/Menu.cpp -lGL -lGLU -lglut -lm -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lassimp -o pepsi_man)",
       "Bash(pkg-config --cflags opencv4)",
       "Bash(pkg-config --cflags opencv)",
-      "Bash(g++ -std=c++17 -I./include -I/usr/include/opencv4 src/main.cpp src/Model.cpp src/Scene.cpp src/Road.cpp src/AssimpModel.cpp src/Menu.cpp -lGL -lGLU -lglut -lm -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lassimp -o pepsi_man)"
+      "Bash(g++ -std=c++17 -I./include -I/usr/include/opencv4 src/main.cpp src/Model.cpp src/Scene.cpp src/Road.cpp src/AssimpModel.cpp src/Menu.cpp -lGL -lGLU -lglut -lm -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lassimp -o pepsi_man)",
+      "Bash(make)",
+      "Bash(g++ -std=c++17 -I./include -I/usr/include/opencv4 src/main.cpp src/Model.cpp src/Scene.cpp src/Road.cpp src/AssimpModel.cpp src/Menu.cpp -lGL -lGLU -lglut -lm -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lassimp -o pepsi_man_new)",
+      "Bash(pkg-config --libs glut assimp gl glu)",
+      "Bash(dpkg -l libassimp-dev)",
+      "Bash(pacman -Q assimp)",
+      "Bash(g++ -std=c++17 -I include src/AssimpModel.cpp src/Scene.cpp src/Road.cpp src/Model.cpp src/Menu.cpp src/main.cpp -lglut -lassimp -lGL -lGLU -o pepsi_man_new)",
+      "Bash(pkg-config --libs opencv4)",
+      "Bash(pkg-config --libs opencv)",
+      "Bash(ldd /home/khaled/Documents/khaled/test_ing/pepsi_man)",
+      "Bash(timeout 5 ./pepsi_man_new)",
+      "Bash(xargs ls *)"
     ]
   }
 }

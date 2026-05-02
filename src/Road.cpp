@@ -103,15 +103,15 @@ void Road::drawSidewalks() {
 
 // ─── lane markings ───────────────────────────────────────────────────────────
 void Road::drawMarkings() {
-    const float y   = 0.012f;  // just above surface to avoid z-fighting
-    const float hw  = 0.10f;   // half-width of line → 20 cm total
-    const float dLen = 3.0f, gap = 2.0f, period = dLen + gap;
+    const float y   = 0.036f;  // just above surface to avoid z-fighting
+    const float hw  = 0.30f;   // half-width of line → 60 cm total
+    const float dLen = 9.0f, gap = 6.0f, period = dLen + gap;
 
     glNormal3f(0, 1, 0);
 
     // ── solid white shoulder lines (full length) ──────────────────────────
     glColor3f(0.95f, 0.95f, 0.95f);
-    const float shX = 0.15f;   // inset from kerb
+    const float shX = 0.45f;   // inset from kerb
     glBegin(GL_QUADS);
     // left shoulder
     glVertex3f(-RHW + shX,        y, ZN);
@@ -130,9 +130,9 @@ void Road::drawMarkings() {
         float ze = z - dLen;
         if (ze < ZF) ze = ZF;
 
-        // white lane dividers at X = ±1.5
+        // white lane dividers at X = ±4.5
         glColor3f(0.95f, 0.95f, 0.95f);
-        float lx[2] = {-1.5f, 1.5f};
+        float lx[2] = {-4.5f, 4.5f};
         for (int i = 0; i < 2; ++i) {
             glBegin(GL_QUADS);
             glNormal3f(0, 1, 0);
